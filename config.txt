@@ -1,0 +1,6 @@
+mkmi Configuration File
+More information in README.md
+
+IMG_DIRECTORY=
+PRELOADER=preloader_selene.bin
+SUPER=super.img
