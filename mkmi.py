@@ -1,7 +1,9 @@
 import subprocess
 import os
+import shutil
 import platform
 import time
+import random
 
 config = "config.txt"
 readme = "readme-edit.txt"
@@ -67,8 +69,36 @@ elif selection == "3":
             time.sleep(1)
 
         print("Commencing Process. Please be patient.")
-        # create directory > /images
+
+        def read_config(file_path):
+            config = {}
+            with open(file_path, 'r') as file:
+                for line in file:
+                    if '=' in line:
+                        key, value = line.strip().split('=', 1)
+                        config[key.strip()] = value.strip()
+            return config
+
+        config_file_path = 'config.txt'
+        config = read_config(config_file_path)
+
+        mod_name = config.get('MOD_NAME', 'default_modname')
+        mod_version = config.get('MOD_VERSION', 'default_version')
+
+        dirnum = random.randint(0, 100000)
+        dirname = f"{mod_name}_{mod_version}_MKMI_{dirnum}"
+
+        print(f"{dirname} will be created in /out.")
+        os.makedirs(os.path.join("out", dirname), exist_ok=True)
         # copy necessary stock images to /images
+
+        stock_images = config.get('STOCK_IMAGES', 'default_images')
+        preloader = config.get('PRELOADER', 'default_preloader')
+        superimg = config.get('SUPER', 'default_super')
+        vbmeta = config.get('VBMETA', 'default_vbmeta')
+
+        print("Copying basic images")
+
         # copy super and preloader to /
         # compress super to super.zst
         # generate flash.bat and flash.sh

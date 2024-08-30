@@ -1,6 +1,13 @@
-mkmi Configuration File
-More information in README.md
+##mkmi Configuration File Example
+##More information in README.md
 
-IMG_DIRECTORY=
+IMG_DIRECTORY=images
+
+MOD_NAME=MIUI
+MOD_VERSION=14.0.8.0
+
+#Images below should be placed in /mkmi
+
 PRELOADER=preloader_selene.bin
 SUPER=super.img
+VBMETA=vbmeta.img
